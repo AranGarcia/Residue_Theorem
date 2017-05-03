@@ -21,10 +21,8 @@ def pertenece_interior(z, r, centro = 0):
         1 = El número complejo se encuentra dentro de la curva.
     """
     d = distancia_cmplx(z, centro)
-    print(d)
-    if r < d:
-        return -1
     if r > d:
         return 1
-    
+    if r < d:
+        return -1
     return 0
