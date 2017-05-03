@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import graficas
 import sympy
 import sys
 import teorema_residuo
@@ -50,3 +51,4 @@ except EOFError:
 # Fin validación entradas
 
 integral = teorema_residuo.int_res_cmplx(funciones[num_fun], z, n, radio)
+print("\nIntegral", integral)
