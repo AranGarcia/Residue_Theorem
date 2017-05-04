@@ -30,6 +30,5 @@ def int_res_cmplx(funcion, z, n, radio):
     suma_residuos = 0
     for i in range(3):
         if cumplen[i] == 1:
-            resultado = cmplx_residuo(fz, z[i], n[i])
-            suma_residuos += resultado
+            suma_residuos += cmplx_residuo(fz, z[i], n[i])
     return 2j * math.pi * suma_residuos

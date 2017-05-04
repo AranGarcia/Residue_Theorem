@@ -14,13 +14,13 @@ print("\u222e( f(z)dz / [ (z - z1)^n1 (z - z2)^n2 (z - z3)^n3 ] \nen "
 funciones = {1 : "sin(z)", 2 : "cos(z)", 3 : "e^z",
     4 : "z^x", 5 : "sinh(z)", 6 : "cosh(z)"}
 
-z = []
+zs = []
 n = []
 try:
     radio = float(input("Radio = "))
-    z.append( complex(input("z1 = ")) )
-    z.append( complex(input("z2 = ")) )
-    z.append( complex(input("z3 = ")) )
+    zs.append( complex(input("z1 = ")) )
+    zs.append( complex(input("z2 = ")) )
+    zs.append( complex(input("z3 = ")) )
 
     # Entrada de funcion
     print("\nElige una f(z):")
@@ -50,5 +50,11 @@ except EOFError:
     sys.exit(0)
 # Fin validación entradas
 
-integral = teorema_residuo.int_res_cmplx(funciones[num_fun], z, n, radio)
-print("\nIntegral", integral)
+integral = teorema_residuo.int_res_cmplx(funciones[num_fun], zs, n, radio)
+
+z, z1, z2, z3 = sympy.symbols('z z1 z2 z3')
+tit = sympy.sympify(funciones[num_fun] + "/ ( (z-z1)**" + str(n[0])
+    +" * (z-z2)**" + str(n[1])
+    +" * (z-z3)**" + str(n[2]) +")").subs({ z1 : zs[0], z2 : zs[1], z3 : zs[2] })
+ti = r'$\oint_\gamma' +  sympy.latex(tit) + ' = ' + str(integral) + r'$'
+graficas.graficar_region(zs, radio, titulo=ti)
